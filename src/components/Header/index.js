@@ -30,7 +30,7 @@ function Header(props) {
                             placeholder='Search for movie ...'
                             ref={props.inputRef}                           
                             />
-                        <Button className='button' type='submit' intent='none' text='Search' />
+                        <Button className='button' type='submit' intent='primary' text='Search' />
                     </form>
                 </Navbar.Group>
             </Navbar>

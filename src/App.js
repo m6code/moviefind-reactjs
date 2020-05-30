@@ -8,6 +8,7 @@ class App extends React.Component {
 
   state = {
     movies: [],
+    totalResults: '',
   }
 
   inputRef = React.createRef()
@@ -18,6 +19,11 @@ class App extends React.Component {
     axios.get(`http://www.omdbapi.com/?apikey=c59a4c38&s=${sVal}`)
       .then((res) => {
         console.log(res)
+        this.setState({
+          movies: res.data.Search,
+          totalResults: res.data.TotalResults,
+        })
+        console.log(this.state.movies);
       })
       .catch((err) => {
         console.log(err);
