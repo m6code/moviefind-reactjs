@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import {
     Navbar,
@@ -9,7 +10,9 @@ import {
     Button,
 } from '@blueprintjs/core'
 
-function Header() {
+function Header(props) {
+
+
     return (
         <div>
             <Navbar >
@@ -20,14 +23,24 @@ function Header() {
                     </Navbar.Heading>
                 </Navbar.Group>
                 <Navbar.Group align={Alignment.RIGHT}>
-                    <form>
-                        <input className='' type='text' placeholder='Search for movie ...' />
-                        <Button className='button' type='submit' intent='primary' text='Search' />
+                    <form onSubmit={props.performSearch}>
+                        <input
+                            className=''
+                            type='text'
+                            placeholder='Search for movie ...'
+                            ref={props.inputRef}                           
+                            />
+                        <Button className='button' type='submit' intent='none' text='Search' />
                     </form>
                 </Navbar.Group>
             </Navbar>
         </div>
     )
+}
+
+Header.propTypes ={
+    performSearch : PropTypes.func.isRequired,
+    inputRef : PropTypes.object.isRequired,
 }
 
 export default Header
