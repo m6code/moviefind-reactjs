@@ -21,7 +21,7 @@ class App extends React.Component {
   }
 
   queryApi = (searchVal) =>{
-    axios.get(`http://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
       .then((res) => {
         console.log(res)
         this.setState({
