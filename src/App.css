@@ -32,3 +32,26 @@ form .button {
   font-size: 1.8em;
   font-weight: bold;
 }
+
+.movie-res-home {
+  margin-top: 2.5em;
+}
+
+.res-no{
+  text-align: center;
+}
+
+.movie-list {
+  display: flex;
+  flex-wrap: wrap;
+  /* margin: 2.5em; */
+}
+
+.movie {
+  /* order: 3; */
+  margin: 2.5em;
+}
+
+.homepageImg {
+  display: block;
+}

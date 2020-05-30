@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import './App.css';
 import Header from './components/Header';
+import SearchResult from './components/SearchResult'
 
 class App extends React.Component {
 
@@ -13,21 +14,29 @@ class App extends React.Component {
 
   inputRef = React.createRef()
 
-  performSearch = (param) => {
-    param.preventDefault();
+  performSearch = (e) => {
+    e.preventDefault();
     const sVal = this.inputRef.current.value;
-    axios.get(`http://www.omdbapi.com/?apikey=c59a4c38&s=${sVal}`)
+    this.queryApi(sVal)
+  }
+
+  queryApi = (searchVal) =>{
+    axios.get(`http://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
       .then((res) => {
         console.log(res)
         this.setState({
           movies: res.data.Search,
-          totalResults: res.data.TotalResults,
+          totalResults: res.data.totalResults,
         })
         console.log(this.state.movies);
       })
       .catch((err) => {
         console.log(err);
       })
+  }
+
+  componentDidMount(){
+    this.queryApi('Time');
   }
 
 
@@ -37,7 +46,9 @@ class App extends React.Component {
         <Header
           performSearch={this.performSearch}
           inputRef={this.inputRef} />
-        <p>Search Results</p>
+        <SearchResult
+          movies={this.state.movies}
+          totalResults={this.state.totalResults} />
       </div>
     );
   }
