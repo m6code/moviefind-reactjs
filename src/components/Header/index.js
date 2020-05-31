@@ -3,9 +3,6 @@ import PropTypes from 'prop-types'
 
 import {
     Navbar,
-    NavbarGroup,
-    NavbarHeading,
-    NavbarDivider,
     Alignment,
     Button,
 } from '@blueprintjs/core'
@@ -15,10 +12,10 @@ function Header(props) {
 
     return (
         <div>
-            <Navbar >
+            <Navbar fixedToTop='true' >
                 <Navbar.Group align={Alignment.LEFT}>
                     <Navbar.Heading>
-                        <img src={process.env.PUBLIC_URL + 'favicon.png'} className='navLogo' />
+                        <img src={process.env.PUBLIC_URL + 'favicon.png'} className='navLogo' alt='logo'/>
                         <span className='navHeadin'>Movie Find</span>
                     </Navbar.Heading>
                 </Navbar.Group>

@@ -10,6 +10,7 @@ class App extends React.Component {
   state = {
     movies: [],
     totalResults: '',
+    movie: [],
   }
 
   inputRef = React.createRef()
@@ -23,16 +24,23 @@ class App extends React.Component {
   queryApi = (searchVal) =>{
     axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
       .then((res) => {
-        console.log(res)
+        //console.log(res)
         this.setState({
           movies: res.data.Search,
           totalResults: res.data.totalResults,
         })
-        console.log(this.state.movies);
+        //console.log(this.state.movies);
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       })
+  }
+
+  queryMovie = (id) => {
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}`).then((res) =>{
+      console.log(res);
+    })
+    .catch((err) => console.log(err));
   }
 
   componentDidMount(){
@@ -48,7 +56,8 @@ class App extends React.Component {
           inputRef={this.inputRef} />
         <SearchResult
           movies={this.state.movies}
-          totalResults={this.state.totalResults} />
+          totalResults={this.state.totalResults}
+          queryMovie={this.queryMovie}/>
       </div>
     );
   }
