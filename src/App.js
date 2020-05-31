@@ -4,13 +4,15 @@ import axios from 'axios'
 import './App.css';
 import Header from './components/Header';
 import SearchResult from './components/SearchResult'
+import MovieDetail from './components/MovieDetail'
 
 class App extends React.Component {
 
   state = {
     movies: [],
     totalResults: '',
-    movie: [],
+    movie: {},
+    isAMovie: false,
   }
 
   inputRef = React.createRef()
@@ -21,13 +23,14 @@ class App extends React.Component {
     this.queryApi(sVal)
   }
 
-  queryApi = (searchVal) =>{
+  queryApi = (searchVal) => {
     axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
       .then((res) => {
         //console.log(res)
         this.setState({
           movies: res.data.Search,
           totalResults: res.data.totalResults,
+          isAMovie: false,
         })
         //console.log(this.state.movies);
       })
@@ -37,13 +40,19 @@ class App extends React.Component {
   }
 
   queryMovie = (id) => {
-    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}`).then((res) =>{
-      console.log(res);
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}`).then((res) => {
+      //console.log(res.data);
+      this.setState({
+        movie: res.data,
+        isAMovie: true,
+      })
+      // console.log(this.state.movie)
+      // console.log(this.state.isAMovie)
     })
-    .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.queryApi('Time');
   }
 
@@ -54,10 +63,15 @@ class App extends React.Component {
         <Header
           performSearch={this.performSearch}
           inputRef={this.inputRef} />
-        <SearchResult
-          movies={this.state.movies}
-          totalResults={this.state.totalResults}
-          queryMovie={this.queryMovie}/>
+        {!this.state.isAMovie ?
+          <SearchResult
+            movies={this.state.movies}
+            totalResults={this.state.totalResults}
+            queryMovie={this.queryMovie} />
+          :
+          <MovieDetail movie={this.state.movie}/>
+        }
+
       </div>
     );
   }

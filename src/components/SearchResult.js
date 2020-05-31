@@ -1,18 +1,12 @@
 import React from 'react'
 
 import PropTypes from 'prop-types'
-import MovieDetail from './MovieDetail'
 
 function SearchResult(props) {
 
     const handleClick = (id) => {
-        alert(`clicked on movie with id=${id} now make this lauch a new page( MovieDetail ) that makes it own query to the api and list movies, it should manage it's own state for now`)
-        return(
-        <MovieDetail
-            id={id}
-            queryMovie={props.queryMovie(id)}
-        />
-        )
+        //alert(`clicked on movie with id=${id} now make this lauch a new page( MovieDetail ) that makes it own query to the api and list movies, it should manage it's own state for now`)
+        props.queryMovie(id) // send the id to the Parent component for querying
     }
 
     return (
