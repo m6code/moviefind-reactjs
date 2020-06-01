@@ -40,7 +40,7 @@ class App extends React.Component {
   }
 
   queryMovie = (id) => {
-    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}&plot=full`).then((res) => {
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}`).then((res) => {
       //console.log(res.data);
       this.setState({
         movie: res.data,

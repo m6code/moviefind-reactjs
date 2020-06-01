@@ -25,7 +25,8 @@ function Header(props) {
                             className=''
                             type='text'
                             placeholder='Search for movie ...'
-                            ref={props.inputRef}                           
+                            ref={props.inputRef} 
+                            required                          
                             />
                         <Button className='button' type='submit' intent='primary' text='Search' />
                     </form>
