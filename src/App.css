@@ -37,13 +37,15 @@ form .button {
   margin-top: 5em;
 }
 
-.res-no{
+.res-no {
   text-align: center;
 }
 
 .movie-list {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
   /* margin: 2.5em; */
 }
 
@@ -54,4 +56,59 @@ form .button {
 
 .homepageImg {
   display: block;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+/* .parent {
+  display: flex;
+  flex-direction: column;
+  margin: 24px;
+} */
+
+.parent-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 24px;
+  /* justify-content: space-between; */
+}
+
+.poster-detail {
+  flex: 1;
+  /* flex-basis: 20%; */
+  margin: 1.3rem auto auto 1.3rem;
+}
+
+.details {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  margin: 1.3rem auto auto 1.3rem;
+  text-align: justify;
+}
+
+.ratings{
+  margin-left: 20px ;
+}
+
+/* @media (min-width: 800px) {
+  .poster-detail{
+    flex-basis: 20%;
+  }
+  .details {
+    flex-basis: 60%;
+    margin: 1.3rem auto auto 1.3rem;
+  }
+} */
+
+@media screen and (min-width: 480px) and (max-width: 800px) {
+  .poster-detail{
+    flex-basis: 20%;
+  }
+  .details{
+    flex-basis: 40%;
+  }
 }
