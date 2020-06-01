@@ -17,7 +17,6 @@ function MovieDetail(props) {
                     <p>Box Office: {props.movie.BoxOffice}</p>
                     <p>Country: {props.movie.Country}</p>
                     <p>Awards: {props.movie.Awards}</p>
-                    <hr/>
                     <div>
                         Ratings:
                         <p>{props.movie.Ratings.Value}</p>

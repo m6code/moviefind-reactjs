@@ -18,8 +18,8 @@ function SearchResult(props) {
                     return (
                         <div key={movie.imdbID}>
                             <div className='movie'>
-                                <img src={movie.Poster} alt={`${movie.Title} poster`} className='poster' onClick={() => handleClick(movie.imdbID)} />
-                                <div>{movie.Title} <span>({movie.Year})</span></div>
+                                <a href="#"><img src={movie.Poster} alt={`${movie.Title} poster`} onClick={() => handleClick(movie.imdbID)} /></a>
+                                <div><a href="#" onClick={() => handleClick(movie.imdbID)} >{movie.Title} <span>({movie.Year})</span></a></div>
                             </div>
                         </div>
                     )
