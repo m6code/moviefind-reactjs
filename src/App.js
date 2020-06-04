@@ -5,7 +5,7 @@ import './App.css';
 import Header from './components/Header';
 import SearchResult from './components/SearchResult'
 import MovieDetail from './components/MovieDetail'
-import Paginator from './components/Paginator';
+// import Paginator from './components/Paginator';
 import {
   Button,
 } from '@blueprintjs/core'
