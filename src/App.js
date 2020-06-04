@@ -23,8 +23,9 @@ class App extends React.Component {
     this.queryApi(sVal)
   }
 
-  queryApi = (searchVal) => {
-    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
+  queryApi = (searchVal, pageNo) => {
+    pageNo = 3;
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}&page=${pageNo}`)
       .then((res) => {
         //console.log(res)
         this.setState({
@@ -40,7 +41,7 @@ class App extends React.Component {
   }
 
   queryMovie = (id) => {
-    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}`).then((res) => {
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&i=${id}&plot=full`).then((res) => {
       //console.log(res.data);
       this.setState({
         movie: res.data,
