@@ -5,6 +5,10 @@ import './App.css';
 import Header from './components/Header';
 import SearchResult from './components/SearchResult'
 import MovieDetail from './components/MovieDetail'
+import Paginator from './components/Paginator';
+import {
+  Button,
+} from '@blueprintjs/core'
 
 class App extends React.Component {
 
@@ -70,8 +74,19 @@ class App extends React.Component {
             totalResults={this.state.totalResults}
             queryMovie={this.queryMovie} />
           :
-          <MovieDetail movie={this.state.movie}/>
+          <MovieDetail movie={this.state.movie} />
         }
+
+        {/* <Paginator
+          totalResults={this.state.totalResults}
+          queryMore={this.queryApi}
+        /> */}
+        <div className='parent-container'>
+        <Button className='button' intent='primary' text='First' />
+        <Button className='button' intent='primary' text='Previous' />
+        <Button className='button' intent='primary' text='Next' />
+        <Button className='button' intent='primary' text='Last' />
+        </div>
 
       </div>
     );
