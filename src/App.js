@@ -17,6 +17,8 @@ class App extends React.Component {
     totalResults: '',
     movie: {},
     isAMovie: false,
+    searchVal: '',
+    totalPages: '',
   }
 
   inputRef = React.createRef()
@@ -27,9 +29,47 @@ class App extends React.Component {
     this.queryApi(sVal)
   }
 
-  queryApi = (searchVal, pageNo) => {
-    pageNo = 3;
-    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}&page=${pageNo}`)
+  queryApi = (searchVal) => {
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${searchVal}`)
+      .then((res) => {
+        console.log(res)
+        this.setState({
+          movies: res.data.Search,
+          totalResults: res.data.totalResults,
+          isAMovie: false,
+          searchVal: searchVal,
+        })
+
+        let totalP = 0;
+        if (this.state.totalResults % 2 === 0) {
+          totalP = (this.state.totalResults / 10);
+        } else {
+          totalP = (this.state.totalResults / 10) + 1;
+        }
+        this.setState({
+          totalPages: totalP,
+        })
+        console.log(this.state.totalPages);
+        //console.log(this.state.movies);
+      })
+      .catch((err) => {
+        //console.log(err);
+      })
+  }
+
+  queryMore = (pageNo) => {
+
+    let totalP = 0
+    if (this.state.totalResults % 2 === 0) {
+      totalP = (this.state.totalResults / 10);
+    } else {
+      totalP = (this.state.totalResults / 10) + 1;
+    }
+
+    this.setState({
+      totalPages: totalP,
+    })
+    axios.get(`https://www.omdbapi.com/?apikey=c59a4c38&s=${this.state.searchVal}&page=${pageNo}`)
       .then((res) => {
         //console.log(res)
         this.setState({
@@ -37,11 +77,13 @@ class App extends React.Component {
           totalResults: res.data.totalResults,
           isAMovie: false,
         })
-        //console.log(this.state.movies);
+        console.log(this.state.movies);
       })
       .catch((err) => {
         //console.log(err);
       })
+
+    console.log(this.state.totalPages);
   }
 
   queryMovie = (id) => {
@@ -56,6 +98,10 @@ class App extends React.Component {
     })
       .catch((err) => console.log(err));
   }
+
+  // getTotalPages = () => {
+  //   console.log(this.state.totalPages)
+  // }
 
   componentDidMount() {
     this.queryApi('Time');
@@ -82,10 +128,10 @@ class App extends React.Component {
           queryMore={this.queryApi}
         /> */}
         <div className='parent-container'>
-        <Button className='button' intent='primary' text='First' />
-        <Button className='button' intent='primary' text='Previous' />
-        <Button className='button' intent='primary' text='Next' />
-        <Button className='button' intent='primary' text='Last' />
+          <Button className='button' intent='primary' text='First' onClick={() => this.queryMore(1)} />
+          <Button className='button' intent='primary' text='Previous' />
+          <Button className='button' intent='primary' text='Next' />
+          <Button className='button' intent='primary' text='Last' onClick={() => this.queryMore(this.state.totalPages)} />
         </div>
 
       </div>
