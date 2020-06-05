@@ -39,6 +39,7 @@ class App extends React.Component {
           totalResults: res.data.totalResults,
           isAMovie: false,
           searchVal: searchVal,
+          pageCounter: 1,
         })
 
         let totalP = 0;
