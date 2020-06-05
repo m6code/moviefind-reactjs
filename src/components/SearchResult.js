@@ -18,9 +18,9 @@ function SearchResult(props) {
         <div className="movie-res-home">
             <p className='res-no'> Found {props.totalResults} movies for your search</p>
             <div className='movie-list'>
-                {props.movies.map((movie) => {
+                {props.movies.map((movie, index) => {
                     return (
-                        <div key={movie.imdbID}>
+                        <div key={index}>
                             <div className='movie'>
                                 <a href="#">
                                     <img src={movie.Poster}

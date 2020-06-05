@@ -19,6 +19,7 @@ class App extends React.Component {
     isAMovie: false,
     searchVal: '',
     totalPages: '',
+    pageCounter: 1,
   }
 
   inputRef = React.createRef()
@@ -55,6 +56,24 @@ class App extends React.Component {
       .catch((err) => {
         //console.log(err);
       })
+  }
+
+  queryFB = (sign) => {
+    if(sign == '+'){
+      if(this.state.pageCounter < this.state.totalPages){
+        this.setState({
+          pageCounter: this.state.pageCounter + 1,
+        })
+      }
+      this.queryMore(this.state.pageCounter);
+    }else if(sign == '-'){
+      if(this.state.pageCounter > 1){
+        this.setState({
+          pageCounter: this.state.pageCounter - 1,
+        })
+      }
+      this.queryMore(this.state.pageCounter);
+    }
   }
 
   queryMore = (pageNo) => {
@@ -127,10 +146,11 @@ class App extends React.Component {
           totalResults={this.state.totalResults}
           queryMore={this.queryApi}
         /> */}
+        <p> showing page {this.state.pageCounter} of {this.state.totalPages}</p>
         <div className='parent-container'>
           <Button className='button' intent='primary' text='First' onClick={() => this.queryMore(1)} />
-          <Button className='button' intent='primary' text='Previous' />
-          <Button className='button' intent='primary' text='Next' />
+          <Button className='button' intent='primary' text='Previous' onClick={() => this.queryFB('-')}/>
+          <Button className='button' intent='primary' text='Next' onClick={() => this.queryFB('+')}/>
           <Button className='button' intent='primary' text='Last' onClick={() => this.queryMore(this.state.totalPages)} />
         </div>
 
