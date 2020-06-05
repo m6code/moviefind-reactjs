@@ -6,7 +6,13 @@ function MovieDetail(props) {
     return (
         <div className="movie-res-home">
             <div className='parent-container'>
-                <div className='poster-detail'><img src={props.movie.Poster} alt='poster' /></div>
+                <div className='poster-detail'><img
+                    src={props.movie.Poster}
+                    alt='poster'
+                    onError={(e) => {e.target.onerror='null'; e.target.src=process.env.PUBLIC_URL + 'noImage.png'}}
+                    />
+
+                </div>
                 <div className='details'>
                     <p>Title: {props.movie.Title}</p>
                     <p>Year: {props.movie.Year}</p>
@@ -20,8 +26,8 @@ function MovieDetail(props) {
                     <div>
                         Ratings:
                         <p>{props.movie.Ratings.Value}</p>
-                        {props.movie.Ratings.map((rating, index) =>{
-                            return(
+                        {props.movie.Ratings.map((rating, index) => {
+                            return (
                                 <div key={index} className='ratings'>
                                     <p>{rating.Source} : {rating.Value}</p>
                                 </div>

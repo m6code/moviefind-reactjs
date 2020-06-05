@@ -9,6 +9,10 @@ function SearchResult(props) {
         props.queryMovie(id) // send the id to the Parent component for querying
     }
 
+    const defImage = process.env.PUBLIC_URL ;
+    console.log(defImage);
+
+
     return (
 
         <div className="movie-res-home">
@@ -18,7 +22,11 @@ function SearchResult(props) {
                     return (
                         <div key={movie.imdbID}>
                             <div className='movie'>
-                                <a href="#"><img src={movie.Poster} alt={`${movie.Title} poster`} onClick={() => handleClick(movie.imdbID)} /></a>
+                                <a href="#">
+                                    <img src={movie.Poster}
+                                        onError={(e) => {e.target.onerror = 'null'; e.target.src=process.env.PUBLIC_URL + 'noImage.png'}} 
+                                        alt={`${movie.Title} poster`} onClick={() => handleClick(movie.imdbID)} />
+                                </a>
                                 <div><a href="#" onClick={() => handleClick(movie.imdbID)} >{movie.Title}</a> <span>({movie.Year})</span></div>
                             </div>
                         </div>
