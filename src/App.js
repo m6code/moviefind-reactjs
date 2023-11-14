@@ -60,14 +60,14 @@ class App extends React.Component {
   }
 
   queryFB = (sign) => {
-    if(sign == '+'){
+    if(sign === '+'){
       if(this.state.pageCounter < this.state.totalPages){
         this.setState({
           pageCounter: this.state.pageCounter + 1,
         })
       }
       this.queryMore(this.state.pageCounter);
-    }else if(sign == '-'){
+    }else if(sign === '-'){
       if(this.state.pageCounter > 1){
         this.setState({
           pageCounter: this.state.pageCounter - 1,

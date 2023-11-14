@@ -12,7 +12,7 @@ function Header(props) {
 
     return (
         <div>
-            <Navbar fixedToTop='true' >
+            <Navbar fixedToTop='true' className="navbar-main">
                 <Navbar.Group align={Alignment.LEFT}>
                     <Navbar.Heading>
                         <img src={process.env.PUBLIC_URL + 'favicon.png'} className='navLogo' alt='logo'/>
