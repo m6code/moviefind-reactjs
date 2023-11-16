@@ -114,3 +114,16 @@ form .button {
     flex-basis: 40%;
   }
 }
+
+.mt-4r {
+  margin-top: 4rem;
+}
+
+.my-3r {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+.mx-3r {
+  margin-left: 3rem;
+  margin-right: 3rem;
+}

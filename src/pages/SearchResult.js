@@ -1,6 +1,7 @@
 import React from 'react'
 
 import PropTypes from 'prop-types'
+import {Link} from "react-router-dom";
 
 function SearchResult(props) {
 
@@ -22,12 +23,13 @@ function SearchResult(props) {
                     return (
                         <div key={index}>
                             <div className='movie'>
-                                <a href="#">
+                                <Link to={`/movie/${movie.imdbID}`}>
                                     <img src={movie.Poster}
                                         onError={(e) => {e.target.onerror = 'null'; e.target.src=process.env.PUBLIC_URL + 'noImage.png'}} 
-                                        alt={`${movie.Title} poster`} onClick={() => handleClick(movie.imdbID)} />
-                                </a>
-                                <div><a href="#" onClick={() => handleClick(movie.imdbID)} >{movie.Title}</a> <span>({movie.Year})</span></div>
+                                        alt={`${movie.Title} poster`} />
+                                </Link>
+                                {/*<div><a href="#" onClick={() => handleClick(movie.imdbID)} >{movie.Title}</a> <span>({movie.Year})</span></div>*/}
+                                <div><Link to={`/movie/${movie.imdbID}`}>{movie.Title}</Link> <span>({movie.Year})</span></div>
                             </div>
                         </div>
                     )
@@ -43,8 +45,7 @@ function SearchResult(props) {
 
 SearchResult.propTypes = {
     movies: PropTypes.array.isRequired,
-    totalResults: PropTypes.string.isRequired,
-    queryMovie: PropTypes.func.isRequired,
+    totalResults: PropTypes.number.isRequired,
 }
 
 export default SearchResult;
