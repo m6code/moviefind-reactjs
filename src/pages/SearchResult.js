@@ -15,7 +15,6 @@ function SearchResult(props) {
 
 
     return (
-
         <div className="movie-res-home">
             <p className='res-no'> Found {props.totalResults} movies for your search</p>
             <div className='movie-list'>
